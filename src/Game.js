@@ -13,12 +13,15 @@ function Game() {
   return (
     <div className="App-header">
       Main Menu
+      <div className="App">
+        {getRandomInt(0, 9)} {getRandomInt(0, 9)} {getRandomInt(0, 9)}{" "}
+        {getRandomInt(0, 9)}{" "}
+      </div>
       <div>
-        <button>Enter </button>
-        <div className="App">
-          {getRandomInt(0, 9)} {getRandomInt(0, 9)} {getRandomInt(0, 9)}{" "}
-          {getRandomInt(0, 9)}{" "}
-        </div>
+        <input type="tel" placeholder="0-9" />
+      </div>
+      <div className="footer">
+        <button>Enter</button>
       </div>
     </div>
   );
