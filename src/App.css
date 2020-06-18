@@ -46,3 +46,11 @@
   width: 100%;
   background: rgb(0, 0, 0);
 }
+
+.Checker {
+  text-align: right;
+  zoom: 1;
+  padding-top: 5px;
+  display: inline-block;
+  width: 150px;
+}
