@@ -17,14 +17,43 @@ class NameForm extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     var solution= getRandomAnswer();
-    if(solution===this.state.value)
-    {
-      alert('Correct answer: ' + this.state.value);
-    }
-    else
-    {
-      alert('Incorrect answer! Solution:' + solution);
-    }
+    var solArray=solution.split("");
+    var inputArray= this.state.value.split("");
+
+    //variables to check for how many correct 
+    var correct= 0; //if number and position is correct
+    var colorCorrect= 0; //if only number is correct
+                         //but needs to fix position
+    var incorrect= 0; //if number and position both incorrect
+      
+      for(var i=0;i<solArray.length; i++)
+      {
+        for(var j=0; j<inputArray.length; j++)
+        {
+          if(solArray[i]===inputArray[j])
+          {
+            colorCorrect++;
+          }
+        }
+        if(solArray[i]===inputArray[i])
+        {
+          correct++;
+        }
+      }
+      colorCorrect= colorCorrect - correct;
+      incorrect= 4 - colorCorrect - correct;
+
+      if(correct===4)
+      {
+        alert('Correct answer! ');
+      }
+      else
+      {
+        alert('Try Again! \n'+ 'Correct: '+ correct+ '\n Color Correct: '
+        +colorCorrect+ '\n Incorrect: '+incorrect );
+      }
+     
+    
   }
 
   render() {
