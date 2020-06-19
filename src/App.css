@@ -14,18 +14,61 @@
 }
 
 .App-header {
+  /*#a05e3b; */
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  justify-content: top-center;
+  font-size: calc(20px + 2vmin);
   color: white;
 }
 
 .App-link {
   color: #61dafb;
+}
+
+.Output
+{
+  font-size: calc(10px + 2vmin);
+  color: white;
+  justify-content: top-center;
+}
+
+.Options
+{
+  font-size: calc(10px + 2vmin);
+  background-color: white;
+  color: black;
+  border: none;
+  padding: 15px;
+  border-radius: 50%;
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+  margin-right: 15px;
+  height: 45px;
+  text-align: center;
+  padding-top: 11px;
+  
+}
+
+/*.OptionPosition
+{
+  align-items: center;
+  justify-content: bottom-center;
+}*/
+
+form
+{
+  padding-bottom: 30px;
+}
+
+label
+{
+  font-size: calc(10px + 2vmin);
+  padding-right: 10px;
 }
 
 @keyframes App-logo-spin {
