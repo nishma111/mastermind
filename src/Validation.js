@@ -32,9 +32,7 @@ export default class Validation extends React.Component {
   handleChange = (event) => {
     const isCheckbox = event.target.type === "numbers";
     this.setState({
-      [event.target.name]: isCheckbox
-        ? event.target.checked
-        : event.target.value,
+      guess: isCheckbox ? event.target.checked : event.target.value,
     });
   };
 
@@ -48,12 +46,14 @@ export default class Validation extends React.Component {
     }
   };
 
+  // Check this link to remove e from input as number.. https://stackoverflow.com/questions/31706611/why-does-the-html-input-with-type-number-allow-the-letter-e-to-be-entered-in
+
   render() {
+    console.log(this.state);
     return (
       <form onSubmit={this.handleSubmit}>
         <div>
           <input
-            guess="guess"
             type="number"
             placeholder="0-9"
             value={this.state.guess}
