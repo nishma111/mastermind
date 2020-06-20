@@ -1,11 +1,11 @@
-import React, { Component } from "react";
+import React from "react";
 import "./App.css";
 import Validation from "./Validation";
 
 var guess = "";
 var array = guess.split("");
 console.log(array);
-let errors = {};
+//let errors = {};
 const RandomList = [
   getRandomInt(0, 9),
   getRandomInt(0, 9),

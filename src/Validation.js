@@ -3,66 +3,55 @@ import "./App.css";
 
 const initialState = {
   guess: "",
-  guessError: "",
+  guesserror: "",
 };
 
 export default class Validation extends React.Component {
   state = initialState;
 
-  validate = () => {
-    let guessError = "";
-
-    if (
-      this.state.guess.includes(
-        "ABCDEFGHIJKLMNOPQRSTUVWXYZ" || "abcdefghijklmnopqrstuvwxyz"
-      )
-    ) {
-      guessError = "invalid input";
-    } else if (this.state.guess.maxLength !== 4) {
-      guessError = "The length of input should be 4";
-    }
-
-    if (guessError) {
-      this.setState({ guessError });
-      return false;
-    }
-    return true;
-  };
-
   handleChange = (event) => {
-    const isCheckbox = event.target.type === "numbers";
-    this.setState({
-      guess: isCheckbox ? event.target.checked : event.target.value,
-    });
+    if (isNaN(event.target.value)) {
+      console.log("Here");
+      this.setState({
+        guesserror: "invalid input",
+      });
+    } else {
+      this.setState({
+        guess: event.target.value,
+        guesserror: "",
+      });
+    }
   };
-
   handleSubmit = (event) => {
     event.preventDefault();
-    const isValid = this.validate();
-    if (isValid) {
-      console.log(this.state);
-      //clear form
-      this.setState(initialState);
-    }
+    /*if (value.length < "4") {
+      this.setState({
+        guesserror: "The length should be 4",
+      });
+    }*/
+    //clear form
+    this.setState(initialState);
   };
 
   // Check this link to remove e from input as number.. https://stackoverflow.com/questions/31706611/why-does-the-html-input-with-type-number-allow-the-letter-e-to-be-entered-in
 
   render() {
-    console.log(this.state);
+    //console.log(this.state);
     return (
       <form onSubmit={this.handleSubmit}>
         <div>
           <input
-            type="number"
             placeholder="0-9"
             value={this.state.guess}
             onChange={this.handleChange}
             maxLength="4"
+            minLength="4"
+            required
           />
-          {this.state.guessError ? (
+
+          {this.state.guesserror ? (
             <div style={{ fontSize: 12, color: "red" }}>
-              {this.state.guessError}
+              {this.state.guesserror}
             </div>
           ) : null}
         </div>
