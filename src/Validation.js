@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import getRandomInt from "./Game";
+import { getRandomInt } from "./Game";
 
 const initialState = {
   guess: "",
@@ -22,14 +22,16 @@ export default class Validation extends React.Component {
       });
     }
   };
+
   handleSubmit = (event) => {
     event.preventDefault();
-    var arr = event.target.value.split("");
+    var arr = this.state.guess.split("");
     var positioncorrect = 0; //both position and numbers match
     var positionincorrect = 0; //numbers match but position do not
     var incorrect = 0; //both number and position do not match
     var i, j;
     var Mastermind = getRandomInt(0, 9);
+
     var RandomList = Mastermind.split("");
     for (i = 0; i < RandomList.length; i++) {
       for (j = 0; j < arr.length; j++) {

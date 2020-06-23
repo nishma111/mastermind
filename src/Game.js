@@ -16,7 +16,7 @@ React.state = {
   Random: [],
 };
 
-function getRandomInt(min, max) {
+export function getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
   var Random = Math.floor(Math.random() * (max - min)) + min;
