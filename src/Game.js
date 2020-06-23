@@ -16,56 +16,13 @@ React.state = {
   Random: [],
 };
 
-//class App extends React.Component {}
-
-/* RandomList: [
-    {
-      A: [],
-      B: [],
-      C: [],
-      D: [],
-    },
-  ],
-};
-/*
-//Put code here
-class Inputs extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      Random: " ",
-    };
-  }
-  handleSubmit = (event) => {
-    event.preventDefault();
-  };
-
-  handleInputChange = (event) => {
-    event.preventDefault();
-    console.log(event);
-    console.log(event.target.name);
-    console.log(event.target.value);
-    this.setState({
-      [event.target.name]: event.target.value,
-    });
-  };
-}
-*/
-
 function getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min)) + min;
+  var Random = Math.floor(Math.random() * (max - min)) + min;
+  Random = String(Random);
+  return Random;
 }
-
-/*function handleChange() {
-  if (guess.length === 0) {
-    errors = "Input is required";
-  } else if (guess.length !== 4) {
-    errors = "4 characters are required";
-  }
-}
-*/
 
 function Game() {
   return (
@@ -77,9 +34,6 @@ function Game() {
       <form>
         <div>
           <Validation />
-          <div className="Checker">
-            <label> Hello </label>
-          </div>
         </div>
       </form>
     </div>

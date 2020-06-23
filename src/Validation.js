@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import getRandomInt from "./Game";
 
 const initialState = {
   guess: "",
@@ -11,7 +12,6 @@ export default class Validation extends React.Component {
 
   handleChange = (event) => {
     if (isNaN(event.target.value)) {
-      console.log("Here");
       this.setState({
         guesserror: "invalid input",
       });
@@ -24,11 +24,43 @@ export default class Validation extends React.Component {
   };
   handleSubmit = (event) => {
     event.preventDefault();
-    /*if (value.length < "4") {
-      this.setState({
-        guesserror: "The length should be 4",
-      });
-    }*/
+    var arr = event.target.value.split("");
+    var positioncorrect = 0; //both position and numbers match
+    var positionincorrect = 0; //numbers match but position do not
+    var incorrect = 0; //both number and position do not match
+    var i, j;
+    var Mastermind = getRandomInt(0, 9);
+    var RandomList = Mastermind.split("");
+    for (i = 0; i < RandomList.length; i++) {
+      for (j = 0; j < arr.length; j++) {
+        if (RandomList[i] === arr[j]) {
+          positionincorrect++;
+        }
+        if (RandomList[i] === arr[i]) {
+          positioncorrect++;
+        }
+      }
+    }
+
+    positionincorrect = positionincorrect - positioncorrect;
+    incorrect = 4 - positionincorrect - positioncorrect;
+
+    if (positioncorrect === 4) {
+      console.log(
+        "All correct. You did it and the correct answer is: " + Mastermind
+      );
+    } else {
+      console.log(
+        "Position correct: " +
+          positioncorrect +
+          "\n Correct numbers: " +
+          positionincorrect +
+          "\n Incorrect numbers : " +
+          incorrect +
+          "And the solution is: " +
+          Mastermind
+      );
+    }
     //clear form
     this.setState(initialState);
   };
