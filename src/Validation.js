@@ -2,10 +2,21 @@ import React from "react";
 import "./App.css";
 import { getRandomInt } from "./Game";
 
+const RandomList = [
+  getRandomInt(0, 9),
+  getRandomInt(0, 9),
+  getRandomInt(0, 9),
+  getRandomInt(0, 9),
+];
+
 const initialState = {
   guess: "",
   guesserror: "",
 };
+
+function refreshPage() {
+  window.location.reload();
+}
 
 export default class Validation extends React.Component {
   state = initialState;
@@ -30,17 +41,19 @@ export default class Validation extends React.Component {
     var positionincorrect = 0; //numbers match but position do not
     var incorrect = 0; //both number and position do not match
     var i, j;
-    var Mastermind = getRandomInt(0, 9);
+    var generate = false;
 
-    var RandomList = Mastermind.split("");
+    console.log(RandomList);
+    console.log(arr);
+
     for (i = 0; i < RandomList.length; i++) {
       for (j = 0; j < arr.length; j++) {
         if (RandomList[i] === arr[j]) {
           positionincorrect++;
         }
-        if (RandomList[i] === arr[i]) {
-          positioncorrect++;
-        }
+      }
+      if (RandomList[i] === arr[i]) {
+        positioncorrect++;
       }
     }
 
@@ -48,51 +61,60 @@ export default class Validation extends React.Component {
     incorrect = 4 - positionincorrect - positioncorrect;
 
     if (positioncorrect === 4) {
-      console.log(
-        "All correct. You did it and the correct answer is: " + Mastermind
-      );
+      alert("All correct. You did it.");
+      {
+        refreshPage();
+      }
     } else {
-      console.log(
-        "Position correct: " +
+      alert(
+        "TRY AGAIN!! \n Position correct: " +
           positioncorrect +
           "\n Correct numbers: " +
           positionincorrect +
           "\n Incorrect numbers : " +
-          incorrect +
-          "And the solution is: " +
-          Mastermind
+          incorrect
       );
     }
     //clear form
-    this.setState(initialState);
+    //this.setState(initialState);
   };
 
-  // Check this link to remove e from input as number.. https://stackoverflow.com/questions/31706611/why-does-the-html-input-with-type-number-allow-the-letter-e-to-be-entered-in
+  handleAnswer = (event) => {
+    alert("The correct solution is: " + RandomList);
+  };
 
   render() {
-    //console.log(this.state);
     return (
-      <form onSubmit={this.handleSubmit}>
-        <div>
-          <input
-            placeholder="0-9"
-            value={this.state.guess}
-            onChange={this.handleChange}
-            maxLength="4"
-            minLength="4"
-            required
-          />
+      <div>
+        <form onSubmit={this.handleSubmit}>
+          <div>
+            <input
+              placeholder="0-9"
+              value={this.state.guess}
+              onChange={this.handleChange}
+              maxLength="4"
+              minLength="4"
+              required
+            />
 
-          {this.state.guesserror ? (
-            <div style={{ fontSize: 12, color: "red" }}>
-              {this.state.guesserror}
-            </div>
-          ) : null}
-        </div>
-        <p className="footer">
-          <button type="submit">FINISH</button>
-        </p>
-      </form>
+            {this.state.guesserror ? (
+              <div style={{ fontSize: 12, color: "red" }}>
+                {this.state.guesserror}
+              </div>
+            ) : null}
+          </div>
+          <p className="footer">
+            <button type="submit">FINISH</button>
+          </p>
+        </form>
+        <form onSubmit={this.handleAnswer}>
+          <div>
+            <p className="footer2">
+              <button type="submit">GIVE UP!</button>
+            </p>
+          </div>
+        </form>
+      </div>
     );
   }
 }

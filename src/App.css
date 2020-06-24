@@ -39,12 +39,15 @@
 }
 
 .footer {
-  position: absolute;
-  left: 0px;
+  position: fixed;
+  right: 1000px;
   bottom: 0px;
-  height: 30px;
-  width: 100%;
-  background: rgb(0, 0, 0);
+}
+
+.footer2 {
+  position: absolute;
+  right: 500px;
+  bottom: 0px;
 }
 
 .Checker {
