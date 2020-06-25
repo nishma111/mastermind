@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import { getRandomInt } from "./Game";
+import OutputTable from "./OutputTable";
 
 const RandomList = [
   getRandomInt(0, 9),
@@ -12,11 +13,19 @@ const RandomList = [
 const initialState = {
   guess: "",
   guesserror: "",
+  rows: [],
 };
 
 function refreshPage() {
   window.location.reload();
 }
+
+/*const output = [
+  
+  {
+    {Input: {arr}, PositionCorrect: {positioncorrect}, PositionIncorrect: {positionincorrect}, Incorrect: {incorrect}}
+  }
+]*/
 
 export default class Validation extends React.Component {
   state = initialState;
@@ -41,7 +50,6 @@ export default class Validation extends React.Component {
     var positionincorrect = 0; //numbers match but position do not
     var incorrect = 0; //both number and position do not match
     var i, j;
-    var generate = false;
 
     console.log(RandomList);
     console.log(arr);
@@ -75,6 +83,18 @@ export default class Validation extends React.Component {
           incorrect
       );
     }
+
+    this.setState({
+      rows: [
+        ...this.state.rows,
+        {
+          Input: this.state.guess,
+          Positioncorrect: positioncorrect,
+          Positionincorrect: positionincorrect,
+          Incorrect: incorrect,
+        },
+      ],
+    });
     //clear form
     //this.setState(initialState);
   };
@@ -113,6 +133,7 @@ export default class Validation extends React.Component {
               <button type="submit">GIVE UP!</button>
             </p>
           </div>
+          <OutputTable rows={this.state.rows} />
         </form>
       </div>
     );
