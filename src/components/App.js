@@ -1,5 +1,4 @@
 import React from "react";
-
 import { Authentication } from "./pages";
 
 const App = () => {
